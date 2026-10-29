@@ -1,0 +1,24 @@
+# data, OpenL2D workspaces and generated outputs
+workspace/
+outputs/
+data/
+FiFAR/
+openl2d/
+*.zip
+*.parquet
+*.pkl
+*.pickle
+*.csv
+*.log
+*.pdf
+*.png
+# environments
+legacy_env/
+.venv/
+venv/
+env/
+# caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
