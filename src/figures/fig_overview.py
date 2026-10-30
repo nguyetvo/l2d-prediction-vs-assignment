@@ -1,4 +1,4 @@
-"""Fig. 1 (study overview), updated: released assignment per method, solver-controlled comparison, lambda retrain grid."""
+"""Fig. 1 (study overview): recalculation from released results, retraining, solver-controlled comparison, assumption audit."""
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
@@ -21,7 +21,7 @@ def arrow(x0, y0, x1, y1):
     ax.annotate('', (x1, y1), (x0, y0), arrowprops=dict(arrowstyle='-|>', color=MUTED, lw=1.8, mutation_scale=14))
 
 box(1, 13, 16, 14, '#6b6b6b', 'FiFAR data', '30,622 alerts\n50 synthetic experts\n25 test scenarios')
-box(22, 22, 22, 14, '#2a76d2', 'Level 1: re-run', "authors' trained models\n+ released assignment\n(OvA greedy, DeCCaF CP-SAT)")
+box(22, 22, 22, 14, '#2a76d2', 'Level 1: recalculation', "authors' released result\nand prediction files\n(no retraining, no re-run)")
 box(22, 4, 22, 14, '#e8673a', 'Level 2: retrain', 'classifier h, 250 OvA,\n25 DeCCaF (TPE, 120 trials)\n+ released assignment')
 box(49, 13, 17, 14, '#1a1a1a', 'Reproduction', 'published Table 7\npaired bootstrap CIs')
 box(71, 13, 17, 14, '#8a4fd0', 'Solver control', 'same exact LP\nfor OvA and DeCCaF')

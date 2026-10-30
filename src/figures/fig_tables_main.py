@@ -32,12 +32,12 @@ t1['rerun_author_artifacts'] = aut['this_run'].values; t1['independent_retrain']
 t1['retrain_rel_diff_%'] = (100 * ret['rel_diff']).round(1); t1['retrain_within_paper_CI'] = ret['within_paper_ci']
 t1.to_csv(TAB / 'T1_reproduction_vs_paper.csv', index=False)
 fig, axes = plt.subplots(1, 2, figsize=(6.6, 3.0), sharex=True, sharey=True)
-for ax, (col, title) in zip(axes, [('rerun_author_artifacts', '(a) Re-run of the authors\' artifacts'), ('independent_retrain', '(b) Independent retraining')]):
+for ax, (col, title) in zip(axes, [('rerun_author_artifacts', '(a) Authors\' released results'), ('independent_retrain', '(b) Independent retraining')]):
     lo, hi = 100, 220
     ax.plot([lo, hi], [lo, hi], color=MUTED, lw=1, ls='--', zorder=1)
     for m, g in t1.groupby('method'):
         ax.scatter(g['paper'], g[col], s=28, marker=MK[m], color=C.get(m, '#5c5c5c'), edgecolor='white', linewidth=0.8, zorder=3,
-                   label=m.replace('_', ' ').replace('Full Rej', 'Full rejection'))
+                   label=m.replace('_', ' ').replace('Full Rej', 'Full Rejection'))
     ax.set_title(title, fontsize=8.5, color=INK, loc='left'); ax.set_xlabel('Published loss ([3], Table 7)')
     ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
 axes[0].set_ylabel('Reproduced loss')
