@@ -2,7 +2,7 @@
 
 Steps (each is skipped if already done):
  1. clone github.com/feedzai/openl2d (or copy nothing and use --repo to point at an existing clone);
- 2. copy the FiFAR payload (archive members under '.../FiFAR/FiFAR/') from the dataset ZIP into <workspace>/FiFAR;
+ 2. copy the FiFAR payload (the folder of the dataset ZIP that holds alert_data/) into <workspace>/FiFAR;
  3. fetch the authors' released artifacts (alert_model.zip, l2d_benchmarking.zip) and extract them without
     overwriting existing files;
  4. move the shipped deferral results to l2d_benchmarking/deferral/results_author_official
@@ -41,11 +41,14 @@ print('repository:', REPO)
 root = REPO / 'FiFAR'
 assert args.data_zip.exists(), f'Missing dataset archive: {args.data_zip} (set L2D_FIFAR_ZIP or --data-zip)'
 with zipfile.ZipFile(args.data_zip) as z:
-    members = [i for i in z.infolist() if '/FiFAR/FiFAR/' in i.filename]
-    assert members, 'No FiFAR/FiFAR payload found in data ZIP'
+    # payload root = folder holding alert_data/ (e.g. 'FiFAR/' or '.../FiFAR/FiFAR/', depending on the download)
+    anchor = [n for n in z.namelist() if n.endswith('alert_data/processed_data/alerts.parquet')]
+    assert len(anchor) == 1, f'Expected one alert_data/processed_data/alerts.parquet in the data ZIP, found {len(anchor)}'
+    prefix = anchor[0][:-len('alert_data/processed_data/alerts.parquet')]
+    members = [i for i in z.infolist() if i.filename.startswith(prefix)]
     copied = 0
     for item in members:
-        rel = item.filename.split('/FiFAR/FiFAR/', 1)[1]
+        rel = item.filename[len(prefix):]
         if not rel or item.is_dir(): continue
         dest = root / rel
         if dest.exists() and dest.stat().st_size == item.file_size: continue
@@ -59,6 +62,9 @@ for p in ['alert_data/processed_data/alerts.parquet', 'synthetic_experts/expert_
 # 3. released artifacts (never overwrite existing files)
 for fname, url in ARTIFACTS.items():
     path = REPO / fname
+    # a clone without Git LFS holds only a small pointer file in place of the archive
+    if path.exists() and path.stat().st_size < 1024 and path.read_bytes().startswith(b'version https://git-lfs'):
+        path.unlink()
     if not path.exists():
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req, timeout=90) as resp, open(path, 'wb') as target: shutil.copyfileobj(resp, target)

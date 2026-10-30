@@ -35,6 +35,7 @@ src/
   08_solver_confound.py           OvA vs DeCCaF under official procedures vs a shared exact LP
   09_cpsat_optimality.py          objective of released CP-SAT assignments vs the LP optimum
   10_lambda_greedy.py             assignment confound at every λ (greedy vs LP for OvA)
+  11_rerun_check.py               re-run vs shipped deferral results; OvA greedy recomputed from ova.pkl
   figures/
     fig_overview.py               study overview diagram
     fig_tables_main.py            reproduction, drift, λ-sensitivity and headroom figures/tables
@@ -65,6 +66,7 @@ Table and figure numbers refer to the submitted manuscript.
 | Solver confound at every λ | `10_lambda_greedy.py` | `lambda_results/solver_confound_by_lambda.csv` (see script docstring) |
 | Gap decomposition (same-LP ladder, recalibration, oracles, bootstrap) | `03_gap_decomposition.py`, `04_gap_decomposition_v2.py` | `gap_decomposition*/<src>/` (see script docstrings) |
 | LP vs CP-SAT loss at λ = 0.057 (solver check) | `07_lambda_eval.py` | `lambda_results/solver_check_lp_vs_cpsat.csv` |
+| Released-artifact consistency: re-run vs shipped results; Table 4 author column with the OvA greedy recomputed from `ova.pkl` | `11_rerun_check.py` (after `00_setup_official_run.py --rerun-deferral` and `08_solver_confound.py author`) | `lambda_results/rerun_vs_shipped_files.csv`, `ova_greedy_recomputed_agreement.csv`, `solver_confound_summary_author_ova_recomputed.csv`, `solver_confound_by_team_author_ova_recomputed.csv` |
 
 Table 1 of the paper (implementation obstacles) is descriptive and has no script.
 
@@ -72,9 +74,9 @@ Table 1 of the paper (implementation obstacles) is descriptive and has no script
 
 1. **OpenL2D code**: <https://github.com/feedzai/openl2d> (cloned by `00_setup_official_run.py`, or pass an
    existing clone with `--repo`).
-2. **FiFAR data**: obtain the dataset archive as described in the OpenL2D README. The setup script expects a ZIP
-   whose FiFAR payload lies under a `.../FiFAR/FiFAR/` folder (the layout of the published archive) and copies it
-   to `<workspace>/FiFAR`. Point to it with `L2D_FIFAR_ZIP` or `--data-zip`.
+2. **FiFAR data**: obtain the dataset archive as described in the OpenL2D README. The setup script locates the folder that
+   holds `alert_data/` inside the ZIP (e.g. `FiFAR/` or `.../FiFAR/FiFAR/`) and copies its contents to
+   `<workspace>/FiFAR`. Point to it with `L2D_FIFAR_ZIP` or `--data-zip`.
 3. **Released artifacts**: `alert_model.zip` and `l2d_benchmarking.zip` from the OpenL2D repository (Git LFS);
    fetched by `00_setup_official_run.py`.
 4. **Two Python environments**
@@ -142,6 +144,7 @@ python src/08_solver_confound.py author
 python src/08_solver_confound.py retrain
 python src/09_cpsat_optimality.py        # needs caches from 07 (cache_0.057) and 08 author (cache_author)
 python src/10_lambda_greedy.py           # needs caches for every λ from 07
+python src/11_rerun_check.py             # needs 00 --rerun-deferral and the cache of 08 author
 
 # 7. Figures and tables
 python src/figures/fig_overview.py
@@ -169,6 +172,11 @@ python src/figures/fig_assignment_confound.py
   10 × 300/1,700) and keeps the authors' full budget for OvA and DeCCaF; see its docstring.
 - The analysis scripts use 6 parallel workers (`joblib`) for the LP assignments; `03`/`04` also fit gradient
   boosting models for the re-estimated correctness levels.
+- The released-artifact analyses read the shipped deferral results (`results_author_official`) and the shipped
+  predictions (`l2d_predictions/*.pkl`). `--rerun-deferral` is a consistency check only and does not reproduce
+  every shipped file: DeCCaF's CP-SAT assignment stops at a 60-second limit, so its solution depends on machine
+  load; and the shipped OvA results of the shuffle-5 testbeds of teams 1–4 differ from a greedy assignment
+  recomputed from the shipped `ova.pkl` (the re-run follows `ova.pkl`).
 
 ## Citation
 
