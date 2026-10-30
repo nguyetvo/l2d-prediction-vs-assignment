@@ -1,15 +1,21 @@
 """Assignment-confound figure (OvA/DeCCaF under official procedures vs a shared exact LP).
-Inputs: solver_confound_summary_{author,retrain}.csv from 08_solver_confound.py."""
+Inputs: solver_confound_summary_{author,retrain}.csv from 08_solver_confound.py.
+With the argument ova_recomputed, panel (a) uses the OvA greedy recomputed from ova.pkl (11_rerun_check.py)
+and the figure is saved as F5_assignment_confound_ova_recomputed.*."""
 import pandas as pd, matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import config
 R = config.LAMBDA_OUT; FIG = config.FIG_DIR; FIG.mkdir(parents=True, exist_ok=True)
+RECOMP = len(sys.argv) > 1 and sys.argv[1] == 'ova_recomputed'
+FILES = {'author': 'solver_confound_summary_author_ova_recomputed.csv' if RECOMP else 'solver_confound_summary_author.csv',
+         'retrain': 'solver_confound_summary_retrain.csv'}
+RENAME = {'OvA greedy recomputed from ova.pkl': 'OvA official greedy', 'DeCCaF official CP-SAT (shipped)': 'DeCCaF official CP-SAT'}
 fig, axes = plt.subplots(1, 2, figsize=(6.6, 2.5), sharey=True)
 C = {'OvA': '#eb6834', 'DeCCaF': '#2a78d6'}
 for ax, (src, title) in zip(axes, [('author', "(a) Authors' artifacts"), ('retrain', '(b) Independent retraining')]):
-    s = pd.read_csv(R / f'solver_confound_summary_{src}.csv', index_col=0).iloc[:, 0]
+    s = pd.read_csv(R / FILES[src], index_col=0).iloc[:, 0].rename(RENAME)
     v = {k: float(s[k]) for k in ['OvA official greedy', 'OvA exact LP', 'DeCCaF official CP-SAT', 'DeCCaF exact LP']}
     rows = [('OvA', 'greedy (official)', v['OvA official greedy'], 'exact LP', v['OvA exact LP']),
             ('DeCCaF', 'CP-SAT (official)', v['DeCCaF official CP-SAT'], 'exact LP', v['DeCCaF exact LP'])]
@@ -28,5 +34,5 @@ h1 = plt.Line2D([], [], marker='o', ls='', markerfacecolor='white', markeredgeco
 h2 = plt.Line2D([], [], marker='o', ls='', color='#6b6b6b', label='same exact LP for both')
 fig.legend(handles=[h1, h2], loc='upper center', ncol=2, fontsize=7, frameon=False, bbox_to_anchor=(0.5, 1.06))
 fig.tight_layout()
-for ext in ('pdf', 'png'): fig.savefig(FIG / f'F5_assignment_confound.{ext}', dpi=300, bbox_inches='tight')
+for ext in ('pdf', 'png'): fig.savefig(FIG / f'F5_assignment_confound{"_ova_recomputed" if RECOMP else ""}.{ext}', dpi=300, bbox_inches='tight')
 print('ok')

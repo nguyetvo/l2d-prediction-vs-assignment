@@ -38,7 +38,7 @@ for ax, (col, title) in zip(axes, [('rerun_author_artifacts', '(a) Re-run of the
     for m, g in t1.groupby('method'):
         ax.scatter(g['paper'], g[col], s=28, marker=MK[m], color=C.get(m, '#5c5c5c'), edgecolor='white', linewidth=0.8, zorder=3,
                    label=m.replace('_', ' ').replace('Full Rej', 'Full rejection'))
-    ax.set_title(title, fontsize=8.5, color=INK, loc='left'); ax.set_xlabel('Published loss (Table 7)')
+    ax.set_title(title, fontsize=8.5, color=INK, loc='left'); ax.set_xlabel('Published loss ([3], Table 7)')
     ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
 axes[0].set_ylabel('Reproduced loss')
 axes[1].legend(loc='lower right', fontsize=7, handletextpad=0.3)

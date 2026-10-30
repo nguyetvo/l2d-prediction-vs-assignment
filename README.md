@@ -66,7 +66,7 @@ Table and figure numbers refer to the submitted manuscript.
 | Solver confound at every λ | `10_lambda_greedy.py` | `lambda_results/solver_confound_by_lambda.csv` (see script docstring) |
 | Gap decomposition (same-LP ladder, recalibration, oracles, bootstrap) | `03_gap_decomposition.py`, `04_gap_decomposition_v2.py` | `gap_decomposition*/<src>/` (see script docstrings) |
 | LP vs CP-SAT loss at λ = 0.057 (solver check) | `07_lambda_eval.py` | `lambda_results/solver_check_lp_vs_cpsat.csv` |
-| Released-artifact consistency: re-run vs shipped results; Table 4 author column with the OvA greedy recomputed from `ova.pkl` | `11_rerun_check.py` (after `00_setup_official_run.py --rerun-deferral` and `08_solver_confound.py author`) | `lambda_results/rerun_vs_shipped_files.csv`, `ova_greedy_recomputed_agreement.csv`, `solver_confound_summary_author_ova_recomputed.csv`, `solver_confound_by_team_author_ova_recomputed.csv` |
+| Released-artifact consistency: re-run vs shipped results; Table 4 author column with the OvA greedy recomputed from `ova.pkl` | `11_rerun_check.py` (after `00_setup_official_run.py --rerun-deferral` and `08_solver_confound.py author`) | `lambda_results/rerun_vs_shipped_files.csv`, `ova_greedy_recomputed_agreement.csv`, `solver_confound_summary_author_ova_recomputed.csv`, `solver_confound_by_team_author_ova_recomputed.csv` (figure: `figures/fig_assignment_confound.py ova_recomputed` → `figures/F5_assignment_confound_ova_recomputed.*`) |
 
 Table 1 of the paper (implementation obstacles) is descriptive and has no script.
 
