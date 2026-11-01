@@ -14,8 +14,9 @@ retraining all models from scratch with the authors' code. It then
 - audits benchmark assumptions: temporal drift, calibration of the expert-correctness estimates,
   oracle headroom and expert complementarity.
 
-No data, trained models or results are included. Everything is regenerated from the OpenL2D repository,
-the FiFAR dataset and the scripts below.
+No data, predictions or trained models are included. Everything is regenerated from the OpenL2D repository,
+the FiFAR dataset and the scripts below. For checking, `results/` holds a copy of the **summary** outputs of the run
+reported in the paper (tables, per-team/per-scenario summaries, key numbers, figures; no case-level data).
 
 ## Repository layout
 
@@ -42,6 +43,7 @@ src/
     fig_assignment_confound.py    assignment-confound figure
 notebooks/
   walkthrough.ipynb               reads the finished outputs and shows where each table/figure comes from
+results/                          summary outputs of the reported run (same layout as $L2D_ROOT/outputs, no caches)
 ```
 
 ## Script to paper mapping
@@ -160,10 +162,10 @@ python src/figures/fig_assignment_confound.py
 ## Walkthrough notebook
 
 `notebooks/walkthrough.ipynb` follows the paper section by section (reproduction, paired statistics, prediction vs
-assignment, released vs re-run results, CP-SAT optimality, λ, drift and headroom, key numbers). It only reads the
-outputs written by the scripts above, so it runs in seconds; the committed copy already shows the outputs. To re-run it,
-install Jupyter in the analysis environment (`pip install notebook`), set `L2D_ROOT` as for the scripts and start Jupyter
-from `notebooks/`.
+assignment, released vs re-run results, CP-SAT optimality, λ, drift and headroom, key numbers). It only reads finished
+outputs, so it runs in seconds; the committed copy already shows the results. It reads `$L2D_ROOT/outputs` when the
+scripts have been run (or the folder set in its first cell) and otherwise falls back to the committed `results/`. To
+run it, install Jupyter in the analysis environment (`pip install notebook`) and start Jupyter from `notebooks/`.
 
 ## Fixed settings
 

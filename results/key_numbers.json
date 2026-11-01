@@ -1,0 +1,59 @@
+{
+  "retrain_within_paper_CI": "20/25",
+  "author_artifacts_within_paper_CI": "25/25",
+  "mean_loss_retrain": {
+    "Full_Rej": 213.5,
+    "Only_Classifier": 204.0,
+    "Random": 161.0,
+    "OvA": 141.2,
+    "DeCCaF": 130.9
+  },
+  "mean_loss_paper": {
+    "Full_Rej": 213.5,
+    "Only_Classifier": 204.0,
+    "Random": 161.0,
+    "OvA": 142.4,
+    "DeCCaF": 136.6
+  },
+  "gap_to_label_oracle_rel": {
+    "retrain": 0.1658,
+    "author": 0.2002
+  },
+  "auc_ece_experts": {
+    "DeCCaF": {
+      "auc": 0.616,
+      "ece": 0.048
+    },
+    "OvA": {
+      "auc": 0.591,
+      "ece": 0.057
+    }
+  },
+  "rescuable_share_range": [
+    0.842,
+    0.942
+  ],
+  "features_ks_ge_0.1": 8,
+  "top_ks": [
+    {
+      "feature": "velocity_4w",
+      "ks": 0.848
+    },
+    {
+      "feature": "velocity_24h",
+      "ks": 0.491
+    },
+    {
+      "feature": "zip_count_4w",
+      "ks": 0.311
+    }
+  ],
+  "lambda_0.5": {
+    "DeCCaF": 906.0,
+    "OvA": 892.1
+  },
+  "solver_check": {
+    "official_cp_sat": 130.9,
+    "exact_lp": 131.0
+  }
+}

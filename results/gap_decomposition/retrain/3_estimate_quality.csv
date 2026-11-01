@@ -1,0 +1,6 @@
+level,auc,ece
+L0 DeCCaF,0.6164,0.0477
+L1 recal (m6),0.6163,0.0381
+L1* recal (m7 cross-fit),0.6066,0.0328
+L2 past re-estimate,0.5301,0.1708
+L3 test cross-fit,0.5325,0.1633

@@ -1,0 +1,100 @@
+{
+  "results_source": "retrain",
+  "mean_loss": {
+    "L0": 130.95,
+    "L0-LP": 131.01,
+    "L1": 126.41,
+    "L1*": 134.34,
+    "L2": 125.81,
+    "L3": 129.25,
+    "LabelOracle": 109.07,
+    "CaseOracle": 20.38
+  },
+  "gap_L0LP_to_label_oracle": 21.94,
+  "share_closed": {
+    "closed_L1": 0.222,
+    "closed_L1*": -0.174,
+    "closed_L2": 0.182,
+    "closed_L3": 0.058
+  },
+  "shift_effect_L2_to_L3": -3.44,
+  "steps": [
+    {
+      "step": "L0 → L0-LP",
+      "mean_change": 0.06,
+      "ci_low": -0.25,
+      "ci_high": 0.39,
+      "significant": false
+    },
+    {
+      "step": "L0-LP → L1",
+      "mean_change": -4.6,
+      "ci_low": -7.18,
+      "ci_high": -1.82,
+      "significant": true
+    },
+    {
+      "step": "L0-LP → L1*",
+      "mean_change": 3.33,
+      "ci_low": -0.25,
+      "ci_high": 6.97,
+      "significant": false
+    },
+    {
+      "step": "L0-LP → L2",
+      "mean_change": -5.2,
+      "ci_low": -9.86,
+      "ci_high": -0.46,
+      "significant": true
+    },
+    {
+      "step": "L2 → L3",
+      "mean_change": 3.44,
+      "ci_low": -3.05,
+      "ci_high": 10.41,
+      "significant": false
+    },
+    {
+      "step": "L3 → LabelOracle",
+      "mean_change": -20.18,
+      "ci_low": -28.81,
+      "ci_high": -12.79,
+      "significant": true
+    },
+    {
+      "step": "L0-LP → LabelOracle",
+      "mean_change": -21.94,
+      "ci_low": -26.29,
+      "ci_high": -17.61,
+      "significant": true
+    }
+  ],
+  "estimate_quality": {
+    "L0 DeCCaF": {
+      "auc": 0.6164,
+      "ece": 0.0477
+    },
+    "L1 recal (m6)": {
+      "auc": 0.6163,
+      "ece": 0.0381
+    },
+    "L1* recal (m7 cross-fit)": {
+      "auc": 0.6066,
+      "ece": 0.0328
+    },
+    "L2 past re-estimate": {
+      "auc": 0.5301,
+      "ece": 0.1708
+    },
+    "L3 test cross-fit": {
+      "auc": 0.5325,
+      "ece": 0.1633
+    }
+  },
+  "notes": [
+    "L1* and L3 use test-month information (cross-fitted): diagnostic bounds, not deployable methods",
+    "Levels change one ingredient at a time and are not perfectly additive",
+    "L2/L3 use every team expert decision on past/test cases, i.e. more supervision than DeCCaF had",
+    "Synthetic experts; 25 scenarios share one test month"
+  ]
+}

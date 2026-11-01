@@ -1,0 +1,15 @@
+design,eval_lambda,setting,n_training_testbeds,OvA,DeCCaF,ratio_OvA_to_DeCCaF,DeCCaF_minus_OvA,ci_low,ci_high,winner
+"A: λ grid, 1 testbed/team",0.02,evaluation only (models trained at 0.057),5,81.0264,67.4168,1.2019,-13.6096,-20.4089,-7.4613,DeCCaF
+"A: λ grid, 1 testbed/team",0.02,retrained at this λ,5,72.2552,56.3424,1.2824,-15.9128,-21.8874,-9.5542,DeCCaF
+"A: λ grid, 1 testbed/team",0.057,evaluation only (models trained at 0.057),5,140.0532,132.8639,1.0541,-7.1894,-14.1344,-0.7342,DeCCaF
+"A: λ grid, 1 testbed/team",0.1,evaluation only (models trained at 0.057),5,208.652,208.924,0.9987,0.272,-7.004,7.3921,no significant difference
+"A: λ grid, 1 testbed/team",0.1,retrained at this λ,5,198.228,206.532,0.9598,8.304,2.7478,14.1288,OvA
+"A: λ grid, 1 testbed/team",0.2,evaluation only (models trained at 0.057),5,368.184,385.808,0.9543,17.624,9.007,26.2162,OvA
+"A: λ grid, 1 testbed/team",0.2,retrained at this λ,5,315.576,320.352,0.9851,4.776,-3.3852,12.7616,no significant difference
+"A: λ grid, 1 testbed/team",0.5,evaluation only (models trained at 0.057),5,846.78,916.46,0.924,69.68,54.6385,86.3405,OvA
+"A: λ grid, 1 testbed/team",0.5,retrained at this λ,5,647.38,600.46,1.0781,-46.92,-62.802,-32.295,DeCCaF
+B: 5 testbeds/team,0.1,evaluation only (models trained at 0.057),25,202.2136,206.292,0.9802,4.0784,-0.0859,8.1302,no significant difference
+B: 5 testbeds/team,0.1,retrained at this λ,25,198.6984,203.3344,0.9772,4.636,1.2089,7.8171,OvA
+B: 5 testbeds/team,0.057,retrained at this λ,25,134.0682,131.0093,1.0233,-3.0589,-6.9065,0.653,no significant difference
+B: 5 testbeds/team,0.5,evaluation only (models trained at 0.057),25,836.124,906.596,0.9223,70.472,60.8497,80.086,OvA
+B: 5 testbeds/team,0.5,retrained at this λ,25,645.248,605.88,1.065,-39.368,-50.5462,-29.0511,DeCCaF

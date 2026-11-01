@@ -1,0 +1,95 @@
+{
+  "results_source": "author",
+  "A1_metric_reproduced": {
+    "runs": {
+      "DeCCaF": 125,
+      "Full_Rej": 25,
+      "Only_Classifier": 25,
+      "OvA": 125,
+      "Random": 125
+    },
+    "status": "PASS"
+  },
+  "A2_headroom": {
+    "mean_rel_gap_DeCCaF_vs_LabelOracle": 0.2002,
+    "mean_rel_gap_DeCCaF_vs_CaseOracle_loose": 0.8517,
+    "mean_capture_DeCCaF": 0.1721,
+    "mean_capture_LabelOracle": 0.3682,
+    "status": "GAP_EXISTS"
+  },
+  "A3_complementarity": {
+    "min_rescuable_share": 0.8424,
+    "status": "PASS"
+  },
+  "A4_calibration": {
+    "mean_ece": {
+      "DeCCaF": 0.0472,
+      "OvA": 0.0573
+    },
+    "status": {
+      "DeCCaF": "OK",
+      "OvA": "MISCALIBRATED_GAP"
+    }
+  },
+  "A5_shift": {
+    "features_ks_ge_threshold": 8,
+    "status": "SHIFT_PRESENT"
+  },
+  "A6_lambda_robust": {
+    "ranking_stable": false
+  },
+  "A7_statistics": [
+    {
+      "A": "DeCCaF",
+      "B": "OvA",
+      "mean_diff": -5.758,
+      "ci_low": -9.552,
+      "ci_high": -1.839,
+      "ci_excludes_0": true
+    },
+    {
+      "A": "DeCCaF",
+      "B": "Random",
+      "mean_diff": -24.368,
+      "ci_low": -29.893,
+      "ci_high": -19.207,
+      "ci_excludes_0": true
+    },
+    {
+      "A": "OvA",
+      "B": "Random",
+      "mean_diff": -18.61,
+      "ci_low": -23.033,
+      "ci_high": -14.046,
+      "ci_excludes_0": true
+    },
+    {
+      "A": "DeCCaF",
+      "B": "Only_Classifier",
+      "mean_diff": -67.414,
+      "ci_low": -78.725,
+      "ci_high": -56.129,
+      "ci_excludes_0": true
+    },
+    {
+      "A": "OvA",
+      "B": "Only_Classifier",
+      "mean_diff": -61.657,
+      "ci_low": -73.407,
+      "ci_high": -49.912,
+      "ci_excludes_0": true
+    }
+  ],
+  "thresholds": {
+    "HEADROOM_MIN_REL": 0.1,
+    "RESCUABLE_MIN": 0.3,
+    "ECE_MAX": 0.05,
+    "KS_SHIFT": 0.1
+  },
+  "caveats": [
+    "Synthetic experts: not evidence about human behaviour",
+    "25 scenarios share one test set: not independent samples",
+    "Oracles are upper bounds, not achievable methods",
+    "A gap shows where improvement is possible; it is not novelty by itself"
+  ]
+}

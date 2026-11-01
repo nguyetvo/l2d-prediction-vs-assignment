@@ -22,3 +22,6 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .pytest_cache/
+# committed summary outputs of the reported run (see README)
+!results/**/*.csv
+!results/**/*.png

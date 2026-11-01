@@ -1,0 +1,6 @@
+A,B,n_pairs,mean_diff,ci_low,ci_high,share_A_better,wilcoxon_p_env
+DeCCaF,OvA,125,-10.2171,-14.6066,-5.5229,0.912,0.0
+DeCCaF,Random,125,-30.0536,-36.3831,-23.759,1.0,0.0
+OvA,Random,125,-19.8364,-24.3889,-15.0584,1.0,0.0
+DeCCaF,Only_Classifier,125,-73.0998,-84.2622,-62.1261,1.0,0.0
+OvA,Only_Classifier,125,-62.8827,-74.7427,-51.27,1.0,0.0

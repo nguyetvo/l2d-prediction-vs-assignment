@@ -1,0 +1,146 @@
+{
+  "results_source": "retrain",
+  "mean_loss": {
+    "L0": 130.95,
+    "L0-LP": 131.01,
+    "L0-cw": 134.1,
+    "L1": 126.33,
+    "L1-cw": 129.68,
+    "L1*": 134.23,
+    "L2": 125.81,
+    "L2eq": 124.99,
+    "L3": 129.25,
+    "LabelOracle": 109.07,
+    "CaseOracle": 20.38
+  },
+  "gap_L0LP_to_label_oracle": 21.94,
+  "share_closed": {
+    "closed_L0-cw": -0.188,
+    "closed_L1": 0.228,
+    "closed_L1-cw": 0.044,
+    "closed_L1*": -0.168,
+    "closed_L2": 0.182,
+    "closed_L2eq": 0.312,
+    "closed_L3": 0.058
+  },
+  "objective_case_weighting_L0LP_to_L0cw": -3.09,
+  "shift_effect_L2eq_to_L3_equal_data": -4.25,
+  "steps": [
+    {
+      "step": "L0 → L0-LP",
+      "mean_change": 0.06,
+      "ci_low": -0.25,
+      "ci_high": 0.39,
+      "significant": false
+    },
+    {
+      "step": "L0-LP → L0-cw",
+      "mean_change": 3.09,
+      "ci_low": 1.62,
+      "ci_high": 4.65,
+      "significant": true
+    },
+    {
+      "step": "L0-LP → L1",
+      "mean_change": -4.68,
+      "ci_low": -7.25,
+      "ci_high": -1.91,
+      "significant": true
+    },
+    {
+      "step": "L1 → L1-cw",
+      "mean_change": 3.35,
+      "ci_low": 1.64,
+      "ci_high": 5.07,
+      "significant": true
+    },
+    {
+      "step": "L0-LP → L1-cw",
+      "mean_change": -1.33,
+      "ci_low": -4.18,
+      "ci_high": 1.7,
+      "significant": false
+    },
+    {
+      "step": "L0-LP → L1*",
+      "mean_change": 3.22,
+      "ci_low": -0.38,
+      "ci_high": 6.86,
+      "significant": false
+    },
+    {
+      "step": "L0-LP → L2",
+      "mean_change": -5.2,
+      "ci_low": -9.86,
+      "ci_high": -0.46,
+      "significant": true
+    },
+    {
+      "step": "L2 → L2eq",
+      "mean_change": -0.81,
+      "ci_low": -6.33,
+      "ci_high": 4.69,
+      "significant": false
+    },
+    {
+      "step": "L2eq → L3",
+      "mean_change": 4.25,
+      "ci_low": -1.64,
+      "ci_high": 10.07,
+      "significant": false
+    },
+    {
+      "step": "L3 → LabelOracle",
+      "mean_change": -20.18,
+      "ci_low": -28.81,
+      "ci_high": -12.79,
+      "significant": true
+    },
+    {
+      "step": "L0-LP → LabelOracle",
+      "mean_change": -21.94,
+      "ci_low": -26.29,
+      "ci_high": -17.61,
+      "significant": true
+    }
+  ],
+  "estimate_quality": {
+    "L0 DeCCaF": {
+      "auc": 0.6164,
+      "ece": 0.0477,
+      "within_case_auc": 0.6044
+    },
+    "L1 recal (m6)": {
+      "auc": 0.6164,
+      "ece": 0.0399,
+      "within_case_auc": 0.6606
+    },
+    "L1* recal (m7 cross-fit)": {
+      "auc": 0.6065,
+      "ece": 0.0325,
+      "within_case_auc": 0.7518
+    },
+    "L2 past re-estimate": {
+      "auc": 0.5301,
+      "ece": 0.1708,
+      "within_case_auc": 0.797
+    },
+    "L2eq month-6 equal size": {
+      "auc": 0.4788,
+      "ece": 0.2474,
+      "within_case_auc": 0.8719
+    },
+    "L3 test cross-fit": {
+      "auc": 0.5325,
+      "ece": 0.1633,
+      "within_case_auc": 0.8629
+    }
+  },
+  "notes": [
+    "L1* and L3 use test-month information (cross-fitted): diagnostic bounds, not deployable methods",
+    "Levels change one ingredient at a time and are not perfectly additive",
+    "L2/L2eq/L3 use every team expert decision on past/test cases, i.e. more supervision than DeCCaF had",
+    "Case weights D are estimated from classifier h recalibrated on month 6 (deployable)",
+    "Synthetic experts; 25 scenarios share one test month"
+  ]
+}

@@ -1,0 +1,10 @@
+,0
+runs per method,125
+OvA official greedy,142.38946400000012
+OvA exact LP,134.4087760000001
+DeCCaF official CP-SAT,136.6317840000001
+DeCCaF exact LP,131.67788800000008
+"DeCCaF - OvA, official procedures","-5.76 [-10.05, -1.66]"
+"DeCCaF - OvA, same LP for both","-2.73 [-6.70, 1.11]"
+OvA: LP - greedy (assignment effect),"-7.98 [-11.69, -4.37]"
+share of the official DeCCaF advantage explained by the assignment procedure,52.6%

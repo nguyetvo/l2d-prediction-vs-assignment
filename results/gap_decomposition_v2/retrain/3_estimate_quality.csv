@@ -1,0 +1,7 @@
+level,auc,ece,within_case_auc
+L0 DeCCaF,0.6164,0.0477,0.6044
+L1 recal (m6),0.6164,0.0399,0.6606
+L1* recal (m7 cross-fit),0.6065,0.0325,0.7518
+L2 past re-estimate,0.5301,0.1708,0.797
+L2eq month-6 equal size,0.4788,0.2474,0.8719
+L3 test cross-fit,0.5325,0.1633,0.8629
