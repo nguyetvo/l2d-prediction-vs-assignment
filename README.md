@@ -40,6 +40,8 @@ src/
     fig_overview.py               study overview diagram
     fig_tables_main.py            reproduction, drift, λ-sensitivity and headroom figures/tables
     fig_assignment_confound.py    assignment-confound figure
+notebooks/
+  walkthrough.ipynb               reads the finished outputs and shows where each table/figure comes from
 ```
 
 ## Script to paper mapping
@@ -154,6 +156,14 @@ python src/figures/fig_assignment_confound.py
 
 `06_lambda_export_legacy.py` is not run directly; `07` and `08` call it with the legacy interpreter.
 `08`, `09` and `10` execute the setup part of `07_lambda_eval.py` (everything before its export loop) via `exec`.
+
+## Walkthrough notebook
+
+`notebooks/walkthrough.ipynb` follows the paper section by section (reproduction, paired statistics, prediction vs
+assignment, released vs re-run results, CP-SAT optimality, λ, drift and headroom, key numbers). It only reads the
+outputs written by the scripts above, so it runs in seconds; the committed copy already shows the outputs. To re-run it,
+install Jupyter in the analysis environment (`pip install notebook`), set `L2D_ROOT` as for the scripts and start Jupyter
+from `notebooks/`.
 
 ## Fixed settings
 
