@@ -248,6 +248,12 @@ sens.to_csv(OUT / '6_lambda_sensitivity.csv')
 rng = np.random.default_rng(SEED)
 N = len(test)
 Wb = rng.multinomial(N, np.ones(N) / N, size=N_BOOT).astype(float)   # bootstrap case weights
+# Weights are drawn in the scenario batch order (the same in all 25 scenarios), as in 07/08, so that
+# Tables 3, 4 and 7 share one set of bootstrap samples; then re-indexed to test.index (the COST order).
+bat_order = next(iter(envs.values()))['bat']['case_id'].values
+assert all(np.array_equal(e['bat']['case_id'].values, bat_order) for e in envs.values())
+assert len(bat_order) == N and set(bat_order) == set(test.index)
+Wb = Wb[:, pd.Series(np.arange(N), index=bat_order).reindex(test.index).values]
 
 def paired(a, b):
     keys = [k for k in COST if k[0] == a]

@@ -43,40 +43,40 @@
       "A": "DeCCaF",
       "B": "OvA",
       "mean_diff": -5.758,
-      "ci_low": -9.552,
-      "ci_high": -1.839,
+      "ci_low": -10.053,
+      "ci_high": -1.657,
       "ci_excludes_0": true
     },
     {
       "A": "DeCCaF",
       "B": "Random",
       "mean_diff": -24.368,
-      "ci_low": -29.893,
-      "ci_high": -19.207,
+      "ci_low": -29.982,
+      "ci_high": -19.086,
       "ci_excludes_0": true
     },
     {
       "A": "OvA",
       "B": "Random",
       "mean_diff": -18.61,
-      "ci_low": -23.033,
-      "ci_high": -14.046,
+      "ci_low": -23.328,
+      "ci_high": -14.061,
       "ci_excludes_0": true
     },
     {
       "A": "DeCCaF",
       "B": "Only_Classifier",
       "mean_diff": -67.414,
-      "ci_low": -78.725,
-      "ci_high": -56.129,
+      "ci_low": -79.202,
+      "ci_high": -55.522,
       "ci_excludes_0": true
     },
     {
       "A": "OvA",
       "B": "Only_Classifier",
       "mean_diff": -61.657,
-      "ci_low": -73.407,
-      "ci_high": -49.912,
+      "ci_low": -73.33,
+      "ci_high": -49.043,
       "ci_excludes_0": true
     }
   ],

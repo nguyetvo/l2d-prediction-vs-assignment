@@ -172,7 +172,9 @@ run it, install Jupyter in the analysis environment (`pip install notebook`) and
 - Cost ratio λ = 0.057 (cost of a false positive relative to a false negative, as in OpenL2D); λ grid
   {0.02, 0.057, 0.1, 0.2, 0.5}.
 - Test month 7, validation month 6; 25 test scenarios (5 teams × 5 capacity settings).
-- Bootstrap: 1000 multinomial case-weight resamples, `numpy.random.default_rng(42)`; percentile 95% CIs.
+- Bootstrap: 1000 multinomial case-weight resamples, `numpy.random.default_rng(42)`; percentile 95% CIs. The
+  weights are drawn in the scenario batch order (identical in all 25 scenarios), so Tables 3, 4 and 7 use the same
+  resampled cases.
 - Assignment LP: each case to exactly one worker, each worker exactly its capacity; `linprog(method='highs')`,
   with a check that the solution is integral.
 
